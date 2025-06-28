@@ -1,42 +1,233 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+@layer components {
+  body {
+    font-family: "Roboto", sans-serif;
+    /* width: 100vw;
+    overflow: hidden; */
+
+  }
+
+  .paddingx {
+    @apply px-10 max-sm:px-5
+  }
+
+  .roboto {
+    font-family: "Roboto", sans-serif;
+
+  }
+
+  .playfair {
+    font-family: "Playfair", serif;
+  }
+
+  .inter {
+    font-family: "Inter", sans-serif;
+  }
+
+  .flexcenter {
+    @apply flex items-center justify-center
+  }
+
+  .bgvideo {
+    mask-image: radial-gradient(101% 10% at 50% 102%, transparent 50%, white 52%);
+
+  }
+
+  .transparent-bg {
+    background: linear-gradient(to top, #08100c 20%, rgba(0, 0, 0, 0));
+  }
+
+  .transparent-bgplan1 {
+    background: linear-gradient(300deg, rgb(18 12 31) 20%, rgb(27 62 111));
+
+  }
+
+  .transparent-bgplan2 {
+    background: linear-gradient(300deg, rgb(18 12 31)20%, rgb(82 31 102));
+
+  }
+
+  .transparent-bgplan3 {
+    background: linear-gradient(300deg, rgb(18 12 31) 20%, rgb(101 28 61));
+  }
+
+
+
+  .logo-effect {
+    border-left: solid 5px #e50914;
+    padding: 100;
+    width: 225px;
+    position: relative;
+    background: linear-gradient(to left, rgba(11, 1, 2, 0) 0%, rgba(255, 55, 65, 0.3)100%);
+  }
+
+
+  .nav-effect {
+    border-top: solid 2px #e50914;
+    padding: 100;
+    width: 225px;
+    position: relative;
+    background: linear-gradient(to top, rgba(11, 1, 2, 0) 0%, rgba(255, 55, 65, 0.3)100%);
+  }
+
+  .bg-title {
+    font-family: "Playfair", serif;
+    background: url(/images/texure.jpg);
+    background-repeat: repeat-x;
+    background-position: 100% 100%;
+    color: white;
+    background-clip: text;
+
+  }
+  .bg-title1 {
+    font-family: "Playfair", serif;
+    background: url(/images/texure.jpg);
+    background-repeat: repeat-x;
+    background-position: 100% 100%;
+    color: transparent;
+    background-clip: text;
+
+  }
+  .nn {
+    background:
+      radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent 80%),
+      #08100c;
+  }
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+.swiper-button-next {
+  color: red !important;
+
+}
+
+.swiper-button-prev {
+  color: red !important;
+}
+
+
+
+.swiper-pagination-bullet-active {
+  width: 50px !important;
+  height: 2px !important;
+  border-radius: 0px !important;
+  background-color: red !important;
+  transition: 1s;
+
+}
+
+.swiper-pagination-bullet {
+  background-color: red !important;
+  width: 50px !important;
+  height: 2px !important;
+  border-radius: 0px !important;
+  transition: 1s;
+
+}
+
+/* From Uiverse.io by Cksunandh */
+.tv-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tv-screen {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background: black;
+  border: 10px solid #333;
+  border-radius: 10px;
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 0.8),
+    inset 0 0 50px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.static {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(0deg,
+      #000,
+      #000 1px,
+      #111 1px,
+      #fff 1px,
+      #333 2px);
+  animation: flicker 0.1s steps(20) infinite;
+  z-index: 1;
+}
+
+.error-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 5px black;
+  z-index: 2;
+  animation: glitch 0.5s infinite;
+}
+
+.tv-stand {
+  width: 150px;
+  height: 10px;
+  background: #333;
+  margin-top: 10px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.8;
+    transform: scaleY(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleY(1.01);
+  }
+
+  100% {
+    opacity: 0.7;
+    transform: scaleY(0.99);
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+@keyframes glitch {
+  0% {
+    transform: translate(-50%, -50%) skewX(5deg);
+    opacity: 0.9;
+  }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  25% {
+    transform: translate(-50%, -50%) skewX(-5deg);
+    opacity: 0.8;
+  }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+  50% {
+    transform: translate(-50%, -50%) skewX(0deg);
+    opacity: 1;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  75% {
+    transform: translate(-50%, -50%) skewX(-5deg);
+    opacity: 0.8;
+  }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+  100% {
+    transform: translate(-50%, -50%) skewX(5deg);
+    opacity: 0.9;
   }
 }
