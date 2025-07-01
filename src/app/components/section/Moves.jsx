@@ -41,7 +41,7 @@ const Moves = ({title,type}) => {
                     data?.results.slice(0, 8).map((item) => {
                         return (
 
-                            <div key={item.id} className=''>
+                            <div key={item.id} className='text-white'>
                                 <Bestitem id={item.id} type={type} />
 
                             </div>

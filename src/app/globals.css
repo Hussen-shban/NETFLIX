@@ -39,6 +39,9 @@
   .transparent-bg {
     background: linear-gradient(to top, #08100c 20%, rgba(0, 0, 0, 0));
   }
+  .transparent-bg5 {
+    background: linear-gradient(to top, #08100c 20%, rgba(0, 0, 0, 0.856));
+  }
 
   .transparent-bgplan1 {
     background: linear-gradient(300deg, rgb(18 12 31) 20%, rgb(27 62 111));

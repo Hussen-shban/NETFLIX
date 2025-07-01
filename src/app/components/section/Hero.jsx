@@ -133,11 +133,11 @@ const Hero = () => {
                 />
                 <div className='absolute w-full pb-10 top-0 left-0 h-screen transparent-bg  '>
                   <div className='pt-[100px] paddingx flex flex-col justify-center h-full '>
-                    <div className='logo-effect mb-4'>
+                    {/* <div className='logo-effect mb-4'>
 
 
                       <img src="/images/logo.png" alt="logo" className='px-2 w-[150px]' />
-                    </div>
+                    </div> */}
 
 
 
