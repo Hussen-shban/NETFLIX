@@ -8,13 +8,14 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from 'swiper/modules'
+import dynamic from 'next/dynamic'
+const Trailer = dynamic(() => import('../trailer/Trailer'), { ssr: false })
+const BlurText = dynamic(() => import('../bits/BlurText'), { ssr: false })
 
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import Trailer from '../trailer/Trailer'
 import Loading from '../loading.jsx/Loading'
-import BlurText from '../bits/BlurText'
 
 const Hero = () => {
   const [opentrailers, setopentrailers] = useState(false)
@@ -52,7 +53,7 @@ const Hero = () => {
     return text
   }
 
-  const moviesToShow = data?.results.slice(0, 6) || [];
+  const moviesToShow = data?.results.slice(0, 3) || [];
 
 
 
@@ -96,25 +97,14 @@ const Hero = () => {
     <section id='HOME' className=' relative  h-screen overflow-hidden  text-white '>
       <Swiper
 
-        autoplay={
-          !opentrailers ?
-            ({
-              delay: 5000,
-              disableOnInteraction: false
-            })
-            : ({
-              delay: 20000,
-              disableOnInteraction: false
-            })
 
-        }
-        speed={1000}
+        speed={500}
         pagination={true}
         keyboard={true}
         modules={[Navigation, Autoplay, Pagination, Mousewheel, Keyboard]}
         className="transparent-bg  "
       >
-        {moviesToShow.map((movie) => {
+        {moviesToShow.map((movie,index) => {
           const rating = movie.vote_average / 2
           const fullStars = Math.floor(rating)
           const hasHalfStar = rating - fullStars >= 0.5
@@ -126,18 +116,15 @@ const Hero = () => {
                 <Image
                   fill
                   alt={movie.title}
-                  src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+                  src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
                   placeholder="blur"
                   blurDataURL={`https://image.tmdb.org/t/p/w92${movie.backdrop_path}`}
                   className='object-cover'
+                  priority={index === 0} 
                 />
                 <div className='absolute w-full pb-10 top-0 left-0 h-screen transparent-bg  '>
                   <div className='pt-[100px] paddingx flex flex-col justify-center h-full '>
-                    {/* <div className='logo-effect mb-4'>
 
-
-                      <img src="/images/logo.png" alt="logo" className='px-2 w-[150px]' />
-                    </div> */}
 
 
 
@@ -191,7 +178,6 @@ const Hero = () => {
                         <img src="/svgs/play.svg" className='w-6 h-6' alt="play" />
                         <p>PLAY NOW</p>
                       </button>
-                      <p onClick={() => handlemoredetails(movie.id)} className='underline cursor-pointer'>More details</p>
                     </div>
                   </div>
                 </div>

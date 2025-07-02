@@ -76,5 +76,5 @@ export const areanav3 =
         { type: "Mystery", id: 9648 },
         { type: "Fantasy", id: 10765 }
       ];
-export const seriesarea = [60574, 93405, 1396, 1399, 76479, 71446, 87108, 48866]
-export const moviearea = [634649, 24428, 550, 27205, 155, 475557, 278, 496243]
+export const seriesarea = [60574, 93405, 1396, 1399, ]
+export const moviearea = [634649, 24428, 550, 27205,]

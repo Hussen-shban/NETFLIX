@@ -6,17 +6,21 @@ import { areanav2 } from "../../../assets"
 const Nav1 = () => {
     const list = areanav2.map((item) => {
         return (
-            <Link
-                key={item}
-                to={item}
-                smooth={true}
-                duration={500}
-                offset={-70}
-            >
-                <li className=" hover:text-white cursor-pointer transition font-semibold   " >
+
+            <li    key={item} className=" hover:text-white cursor-pointer transition font-semibold   " >
+
+                <Link
+                 
+                    to={item}
+                    smooth={true}
+                    duration={500}
+                    offset={-70}
+                >
                     {item}
-                </li>
-            </Link>
+
+                </Link>
+            </li>
+
 
         )
     })
