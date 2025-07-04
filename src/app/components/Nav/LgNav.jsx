@@ -4,7 +4,8 @@ import { fetchFromTMDB } from '@/app/react-query/fetchFromTMDB'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
-import { Link } from 'react-scroll'
+import { Link as ScrollLink } from 'react-scroll';
+import Link from 'next/link';
 
 const LgNav = () => {
     const router = useRouter()
@@ -16,7 +17,7 @@ const LgNav = () => {
 
             <li key={item} className=' cursor-pointer'>
 
-                <Link
+                <ScrollLink
 
                     to={item}
                     smooth={true}
@@ -24,7 +25,7 @@ const LgNav = () => {
                     offset={-70}
                 >
                     {item}
-                </Link>
+                </ScrollLink>
             </li>
 
 
@@ -34,6 +35,7 @@ const LgNav = () => {
     const [search, setsearch] = useState("")
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
+    const [suggestions, setSuggestions] = useState([])
 
 
     async function handleSearch() {
@@ -60,7 +62,20 @@ const LgNav = () => {
         } finally {
             setLoading(false)
             setsearch("")
-            
+
+        }
+    }
+    async function fetchSuggestions(query) {
+        if (!query) {
+            setSuggestions([])
+            return
+        }
+
+        try {
+            const data = await fetchFromTMDB('search/multi', { query })
+            setSuggestions(data.results.slice(0, 5))
+        } catch (error) {
+            console.log('Suggestion fetch error:', error)
         }
     }
 
@@ -68,6 +83,10 @@ const LgNav = () => {
 
 
         <div className='max-md:hidden flex items-center justify-between w-full'>
+            <Link
+
+href="/"
+            >
             <Image
                 src="/images/logo.png"
                 alt='logo.png'
@@ -75,18 +94,24 @@ const LgNav = () => {
                 height={150}
                 className=' cursor-pointer'
             />
-            <ul className='flexcenter gap-7 text-white'>
+
+</Link>
+            <ul className=' flexcenter gap-7 text-white'>
                 {
                     navlist
                 }
             </ul>
 
-            <div className='flexcenter relative gap-3 '>
-                <div className="search-container w-[220px] ">
+            <div className='flexcenter relative gap-3  '>
+                <div className="search-container w-full ">
                     <div className="search-bar">
                         <input
                             value={search}
-                            onChange={(e) => setsearch(e.target.value)}
+                            onChange={(e) => {
+                                const value = e.target.value
+                                setsearch(value)
+                                fetchSuggestions(value)
+                            }}
                             type="text" className="search-input" placeholder="Search..." />
 
                         <div onClick={handleSearch} className="search-icon">
@@ -111,6 +136,25 @@ const LgNav = () => {
                 {
                     error && <p className='text-red-600 text-[18px] absolute -bottom-8 left-1/2 -translate-x-1/2 '>No results found.</p>
                 }
+
+                {suggestions.length > 0 && (
+                    <ul className="absolute top-[110%] left-0 w-full bg-white text-black rounded shadow-md z-10 max-h-60 overflow-auto">
+                        {suggestions.map((item) => (
+                            <li
+                                key={item.id}
+                                className="p-2 hover:bg-gray-200 cursor-pointer"
+                                onClick={() => {
+                                    setSuggestions([])
+                                    setsearch('')
+                                    router.push(`/details/${item.media_type}/${item.id}`)
+                                }}
+                            >
+                                {item.title || item.name}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+
 
             </div>
 

@@ -4,6 +4,7 @@ import Video from "./Video";
 import { fetchFromTMDB } from "../../../react-query/fetchFromTMDB";
 import Swiper from "./Swip";
 import Plans from "./Plans";
+import Link from "next/link";
 
 export default async function details({ params }) {
 
@@ -23,12 +24,17 @@ export default async function details({ params }) {
   return (
     <div className=" nn  min-h-screen paddingx">
       <div className="flex items-center  h-[60px] overflow-hidden">
-        <Image src="/images/logo.png"
-          width={200}
-          height={150}
-          alt="logo"
-          className="w-[200px] max-sm:w-[100px]"
-        />
+        <Link
+        href="/"
+        >
+          <Image src="/images/logo.png"
+            width={200}
+            height={150}
+            alt="logo"
+            className="w-[200px] max-sm:w-[100px]"
+          />
+        </Link>
+
       </div>
       <div className="  flex sticky top-0 pt-5 items-center w-full justify-center z-50">
         <Nav1 />
