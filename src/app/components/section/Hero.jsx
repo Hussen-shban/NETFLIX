@@ -98,7 +98,7 @@ const Hero = () => {
       <Swiper
 
 
-        speed={500}
+        speed={800}
         pagination={true}
         keyboard={true}
         modules={[Navigation, Autoplay, Pagination, Mousewheel, Keyboard]}
