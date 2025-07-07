@@ -45,24 +45,28 @@ const Bestitem = ({ id, type }) => {
                             blurDataURL={`https://image.tmdb.org/t/p/w92${data.backdrop_path}`}
                             width={500}
                             height={500}
-                            unoptimized 
+                            unoptimized
                             alt='images'
                             className='w-[290px]  hover:scale-105 transition duration-300  max-sm:w-[100%]  sm:max-h-[164px] rounded-md  object-cover border-[1px] border-red-700'
                         />
 
 
-                        
+
                         <img className=' absolute bottom-0 left-0 w-12 ' src="svgs/video.svg" alt="l" />
                     </div>
                 </Link>
             }
 
-            <div className='flexcenter gap-3 my-2 w-fit'>
-                <img className='w-5' src="svgs/star.svg" alt="" />
-                <p>{data?.vote_average ? data.vote_average.toFixed(1) : 'N/A'} / 10</p>
+            <div className='h-10'>
+                <div className='flexcenter gap-3 my-2 w-fit'>
+                    <img className='w-5' src="svgs/star.svg" alt="" />
+                    <p>{data?.vote_average ? data.vote_average.toFixed(1) : 'N/A'} / 10</p>
 
+                </div>
+                <p>{data?.name ? data.name : data?.title ? data.title : "..."}</p>
             </div>
-            <p>{data?.name ? data.name : data?.title ? data.title : "..."}</p>
+
+
         </div>
     )
 }

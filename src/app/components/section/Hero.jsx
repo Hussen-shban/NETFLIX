@@ -11,7 +11,7 @@ import { Navigation, Pagination, Mousewheel, Keyboard, Autoplay } from 'swiper/m
 import dynamic from 'next/dynamic'
 const Trailer = dynamic(() => import('../trailer/Trailer'), { ssr: false })
 const BlurText = dynamic(() => import('../bits/BlurText'), { ssr: false })
-
+import useIsMobile from '../useIsMobile'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -19,6 +19,7 @@ import Loading from '../loading.jsx/Loading'
 
 const Hero = () => {
   const [opentrailers, setopentrailers] = useState(false)
+  const isMobile = useIsMobile();
 
   const [id, setid] = useState(null)
   const genreMap = {
@@ -110,17 +111,22 @@ const Hero = () => {
           const hasHalfStar = rating - fullStars >= 0.5
 
           const genre = movie.genre_ids.map(id => genreMap[id]).join(', ')
+
+
+          const imageSize = isMobile ? 'w500' : 'w1280';
+
           return (
             <SwiperSlide className=" " key={movie.id}>
               <div className='h-screen   w-full '>
                 <Image
                   fill
                   alt={movie.title}
-                  src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
+                  src={`https://image.tmdb.org/t/p/${imageSize}${movie.backdrop_path}`}     
                   placeholder="blur"
                   blurDataURL={`https://image.tmdb.org/t/p/w92${movie.backdrop_path}`}
                   className='object-cover'
                   priority={index === 0} 
+                  unoptimized 
                 />
                 <div className='absolute w-full pb-10 top-0 left-0 h-screen transparent-bg  '>
                   <div className='pt-[100px] paddingx flex flex-col justify-center h-full '>

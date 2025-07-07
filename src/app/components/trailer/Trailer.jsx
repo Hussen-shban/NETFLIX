@@ -16,11 +16,13 @@ const Trailer = ({ id, onClose }) => {
     return <p>...</p>;
   }
 
-  const trailer = data.results.find(
+  const trailer = data?.results?.find(
     (vid) => vid.type === "Trailer" && vid.site === "YouTube"
   );
 
-
+  if (!trailer) {
+    return <p>No trailer available</p>;
+  }
 
   const trailerUrl = `https://www.youtube.com/embed/${trailer.key}`;
   const videoId = trailer.key;
@@ -28,31 +30,32 @@ const Trailer = ({ id, onClose }) => {
   const urlWithParams = `${trailerUrl}?autoplay=1&mute=1&loop=1&playlist=${videoId}`;
   return (
     <div className="relative flex items-center justify-center max-sm:w-[90%] w-[70%] h-[80%] max-sm:h-[50%]">
-{ !isLoading  ?   <iframe
+    {(!isLoading && trailer) ? (
+      <iframe
         title="YouTube Trailer"
         allow="autoplay; encrypted-media"
         allowFullScreen
         className="w-[100%] h-[100%] p-0.5 rounded-2xl bg-[#ffffff31]"
         src={urlWithParams}
+        loading="lazy"
       />
-      :
-      
+    ) : (
       <Noise
-      patternSize={250}
-      patternScaleX={1}
-      patternScaleY={1}
-      patternRefreshInterval={2}
-      patternAlpha={50}
-    />
-      }
-      <img
-        onClick={onClose}
-        src="/svgs/xmark.svg"
-        className="w-[25px] rounded-4xl overflow-hidden cursor-pointer top-5 p-1 bg-red-600 right-5 max-sm:right-2 max-sm:top-2 absolute"
-        alt="Close"
+        patternSize={250}
+        patternScaleX={1}
+        patternScaleY={1}
+        patternRefreshInterval={2}
+        patternAlpha={50}
       />
-    </div>
-  );
+    )}
+    <img
+      onClick={onClose}
+      src="/svgs/xmark.svg"
+      className="w-[25px] rounded-4xl overflow-hidden cursor-pointer top-5 p-1 bg-red-600 right-5 max-sm:right-2 max-sm:top-2 absolute"
+      alt="Close"
+    />
+  </div>
+);
 };
 
 export default Trailer;

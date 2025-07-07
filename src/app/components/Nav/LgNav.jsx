@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 import { Link as ScrollLink } from 'react-scroll';
 import Link from 'next/link';
 
-const LgNav = () => {
+const LgNav = ({hidden}) => {
     const router = useRouter()
     const navlist = areanav.map((item) => {
 
@@ -96,11 +96,13 @@ href="/"
             />
 
 </Link>
-            <ul className=' flexcenter gap-7 text-white'>
+    
+    
+{ !hidden &&           <ul className=' flexcenter gap-7 text-white'>
                 {
                     navlist
                 }
-            </ul>
+            </ul>}
 
             <div className='flexcenter relative gap-3  '>
                 <div className="search-container w-full ">
