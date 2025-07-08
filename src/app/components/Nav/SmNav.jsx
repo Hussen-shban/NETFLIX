@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { Link as ScrollLink } from 'react-scroll';
 import Link from 'next/link';
-const SmNav = () => {
+const SmNav = ({hidden}) => {
 
     const router = useRouter()
     const [search, setsearch] = useState("")
@@ -99,10 +99,10 @@ const SmNav = () => {
             </Link>
 
 
-            <div onClick={handleopenlist} className={`${open && "hidden"}`}>
+{  !hidden &&          <div onClick={handleopenlist} className={`${open && "hidden"}`}>
                 <img src="/images/menu.png" className='w-5  cursor-pointer' alt="heart" />
 
-            </div>
+            </div>}
 
 
 

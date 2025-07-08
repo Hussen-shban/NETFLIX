@@ -46,7 +46,7 @@ const TV = () => {
           fetchNextPage()
         }
       },
-      { threshold: 1 }
+      { threshold: 0.2  }
     )
 
     if (bottomRef.current) {
@@ -81,13 +81,13 @@ const TV = () => {
                 {Array.isArray(page?.results) &&
                   page.results.slice(0, 10).map((item) => (
                     <div key={item.id} className="text-white">
-                      <Bestitem id={item.id} type={type} />
+                      <Bestitem item={item} type={type} />
                     </div>
                   ))}
               </React.Fragment>
             ))}
         </div>
-        <div ref={bottomRef} className="h-10 w-full" />
+        <div ref={bottomRef} className="h-20 w-full" />
       </section>
     </>
   )

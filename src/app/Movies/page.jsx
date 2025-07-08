@@ -6,7 +6,6 @@ import { fetchFromTMDB } from '@/app/react-query/fetchFromTMDB'
 import Bestitem from '../components/best/Bestitem'
 import Loading from '../components/loading.jsx/Loading'
 import Nav from '../components/section/Nav'
-import { userAgent } from 'next/server'
 
 const Moves = () => {
 
@@ -46,7 +45,7 @@ const Moves = () => {
           fetchNextPage();
         }
       },
-      { threshold: 1 }
+      { threshold: 0.2 }
     );
 
     if (bottomRef.current) {
@@ -86,13 +85,13 @@ const Moves = () => {
             <React.Fragment key={i}>
               {page.results.slice(0, 10).map((item) => (
                 <div key={item.id} className="text-white">
-                  <Bestitem id={item.id} type={type} />
+                  <Bestitem item={item} type={type} />
                 </div>
               ))}
             </React.Fragment>
           ))}
         </div>
-        <div ref={bottomRef} className="h-10 w-full" />
+        <div ref={bottomRef} className="h-20 w-full" />
 
       </section>
 

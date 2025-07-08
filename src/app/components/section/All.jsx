@@ -45,7 +45,7 @@ const Moves = ({ title, type }) => {
                         return (
 
                             <div key={item.id} className='text-white'>
-                                <Bestitem id={item.id} type={type} />
+                                <Bestitem item={item} type={type} />
 
                             </div>
 
@@ -53,8 +53,8 @@ const Moves = ({ title, type }) => {
                     })
                 }
 
-                <a href={`/${type == "movie" ? "Movies" : "TV"}`} className=' text-white text-[28px] '>
-                    <div className='w-[290px] flexcenter h-[164px] max-sm:w-[90%] bg-[#e509144b]  overflow-hidden relative rounded-md  '>
+                <a href={`/${type == "movie" ? "Movies" : "TV"}`} className=' text-white max-sm:w-full text-[28px] '>
+                    <div className='w-[290px] flexcenter h-[164px] max-sm:w-[100%] bg-[#e509144b]  overflow-hidden relative rounded-md  '>
 
                         See More
 

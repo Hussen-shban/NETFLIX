@@ -1,7 +1,7 @@
 import Best from "./components/section/Best";
 import Footer from "./components/section/Footer";
 import Hero from "./components/section/Hero";
-import Moves from "./components/section/Moves";
+import Moves from "./components/section/All";
 import Nav from "./components/section/Nav";
 import Plans from "./details/[type]/[id]/Plans";
 

@@ -5,6 +5,8 @@ import { fetchFromTMDB } from "../../../react-query/fetchFromTMDB";
 import Swiper from "./Swip";
 import Plans from "./Plans";
 import Link from "next/link";
+import { Suspense } from "react";
+import Noise from "@/app/components/bits/Noise";
 
 export default async function details({ params }) {
 
@@ -15,17 +17,17 @@ export default async function details({ params }) {
   const title = data.title || data.name || 'No Title'
   const year = (data.release_date || data.first_air_date || '').slice(0, 4)
   const seasonsCount = data.number_of_seasons || null
-  const rating = data.content_ratings?.results?.find(r => r.iso_3166_1 === 'US')?.rating || data.adult ? 'TV-MA' : 'PG' // محاولة استنتاج التصنيف، أو خلي ثابت
+  const rating = data.content_ratings?.results?.find(r => r.iso_3166_1 === 'US')?.rating || data.adult ? 'TV-MA' : 'PG'
   const genres = data.genres?.map(g => g.name).join(', ') || 'Unknown'
   const overview = data.overview || 'No overview available.'
   const creators = data.created_by?.map(c => c.name).join(', ') || 'Unknown'
-  const starring = data.credits?.cast?.slice(0, 3).map(c => c.name).join(', ') || 'Unknown' // لازم تجلب credits بشكل منفصل لو مش موجود
+  const starring = data.credits?.cast?.slice(0, 3).map(c => c.name).join(', ') || 'Unknown'
 
   return (
     <div className=" nn  min-h-screen paddingx">
       <div className="flex items-center  h-[60px] overflow-hidden">
         <Link
-        href="/"
+          href="/"
         >
           <Image src="/images/logo.png"
             width={200}
@@ -41,7 +43,12 @@ export default async function details({ params }) {
       </div>
       <div className="flex flex-col items-center justify-center mt-5">
         <div id="Trailers" className="w-full">
-          <Video type={type} id={id} />
+          <Suspense fallback={
+            <Noise />
+          }>
+            <Video type={type} id={id} />
+
+          </Suspense>
 
         </div>
 
