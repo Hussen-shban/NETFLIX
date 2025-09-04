@@ -190,8 +190,7 @@ const SmNav = ({ hidden }) => {
                                     </svg>
                                 )}
                             </div>
-                        </div>ل
-
+                       </div>ل
   
 
                         <div className="glow"></div>

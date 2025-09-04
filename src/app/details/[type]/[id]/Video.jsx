@@ -16,7 +16,7 @@ const Video = ({ type, id }) => {
         <Noise />
     </div >;
     if (isError) {
-        console.error("Trailer fetching error:", error); // ✅ هون رح تشوف الخطأ بالتفصيل
+        console.error("Trailer fetching error:", error); 
         return <div>Failed to load trailer</div>;
     } if (!data || !data.results) return
     <div className="relative w-full h-[70vh] overflow-hidden  bgvideo rounded-[20px] ">
@@ -33,13 +33,12 @@ const Video = ({ type, id }) => {
 
     console.log(isError)
     return (
-        <div className="relative w-full h-[70vh] max-sm:h-[50vh] overflow-hidden  bgvideo rounded-[20px] "
+        <div className="relative w-full bg-black h-[70vh] max-sm:h-[50vh] overflow-hidden  bgvideo rounded-[20px] ">
 
-        >
 
             {trailer ? (
                 <iframe
-                    className="w-full h-full object-fill "
+                    className="w-full h-full z-30 object-fill "
                     src={trailerUrl}
                     title="Trailer"
                     allow="autoplay; fullscreen; clipboard-write; encrypted-media; picture-in-picture"
@@ -49,8 +48,7 @@ const Video = ({ type, id }) => {
                 <div className="text-white p-4">No trailer available</div>
             )}
 
-
-        </div >
+</div>
 
     )
 }

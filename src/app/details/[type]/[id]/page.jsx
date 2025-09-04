@@ -46,8 +46,14 @@ export default async function details({ params }) {
           <Suspense fallback={
             <Noise />
           }>
-            <Video type={type} id={id} />
+            <div className="relative w-full bg-black h-[70vh] max-sm:h-[50vh] overflow-hidden  bgvideo rounded-[20px] "
 
+            >
+        <div className="absolute -z-0 inset-0 bg-black/50 flex items-center justify-center ">
+          <span className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></span>
+        </div>
+              <Video type={type} id={id} />
+            </div>
           </Suspense>
 
         </div>
