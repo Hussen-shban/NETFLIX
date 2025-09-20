@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Noise from "../bits/Noise";
 
 const Bestitem = ({ item, type }) => {
-  const [loading, setLoading] = useState(false);
 
   if (!item) return null;
   const title = item.title || item.name || "No Title";
@@ -21,16 +19,10 @@ const Bestitem = ({ item, type }) => {
       {imageUrl ? (
         <Link
           href={`/details/${type}/${item.id}`}
-          onClick={() => setLoading(true)}
           prefetch={true}
-          className={`${loading ? "pointer-events-none" : ""}`}
         >
           <div className="w-[290px] sm:max-h-[164px] max-sm:w-[100%] overflow-hidden relative rounded-md">
-          {loading && (
-        <div className="absolute sm:max-h-[164px] inset-0 bg-black/50 flex items-center justify-center z-20">
-          <span className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></span>
-        </div>
-      )}
+
             <Image
               src={imageUrl}
               placeholder={item.backdrop_path ? "blur" : "empty"}
