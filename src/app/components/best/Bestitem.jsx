@@ -22,6 +22,7 @@ const Bestitem = ({ item, type }) => {
         <Link
           href={`/details/${type}/${item.id}`}
           onClick={() => setLoading(true)}
+          prefetch={true}
           className={`${loading ? "pointer-events-none" : ""}`}
         >
           <div className="w-[290px] sm:max-h-[164px] max-sm:w-[100%] overflow-hidden relative rounded-md">

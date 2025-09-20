@@ -1,4 +1,4 @@
-
+"use client"
 import React from 'react'
 import SmNav from '../Nav/SmNav'
 import LgNav from '../Nav/LgNav'
