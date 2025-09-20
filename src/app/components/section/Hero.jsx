@@ -113,7 +113,7 @@ const Hero = () => {
           const genre = movie.genre_ids.map(id => genreMap[id]).join(', ')
 
 
-          const imageSize = isMobile ? 'w500' : 'w1280';
+          const imageSize = isMobile ? 'w1280' : 'w1280';
 
           return (
             <SwiperSlide className=" " key={movie.id}>
